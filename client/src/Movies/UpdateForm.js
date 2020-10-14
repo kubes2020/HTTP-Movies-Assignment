@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
-export const UpdateForm = () => {
+
+export const UpdateForm = ({setMovieList, movieList}) => {
+    const history = useHistory()
     const { id } = useParams()
     const [newMovie, setNewMovie] = useState({
         title: "",
@@ -30,7 +32,16 @@ export const UpdateForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         // console.log("handleSubmit", newMovie)
+        axios.put(`http://localhost:5000/api/movies/${id}`, newMovie)
+        .then((res) => {
+            // console.log("put res", res.data)
+            // setMovieList([...movieList, res.data])
+            // history.push("/")
 
+        })
+        .catch((err) => {
+            console.log("error with put res", err)
+        })
     }
 
     return(
