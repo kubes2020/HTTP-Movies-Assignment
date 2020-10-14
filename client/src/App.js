@@ -33,7 +33,7 @@ const App = () => {
         <MovieList movies={movieList} />
       </Route>
 
-      <Route path="/update-movie/:id" render={() => <UpdateForm setMovieList={setMovieList} movieList={movieList}/>}>
+      <Route path="/update-movie/:id" render={(props) =>  <UpdateForm {...props} setMovieList={setMovieList} movieList={movieList}/>}>
       </Route>
 
       <Route path="/movies/:id">

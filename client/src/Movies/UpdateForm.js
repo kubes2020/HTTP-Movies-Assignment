@@ -34,9 +34,9 @@ export const UpdateForm = ({setMovieList, movieList}) => {
         // console.log("handleSubmit", newMovie)
         axios.put(`http://localhost:5000/api/movies/${id}`, newMovie)
         .then((res) => {
-            // console.log("put res", res.data)
-            // setMovieList([...movieList, res.data])
-            // history.push("/")
+            console.log("put res", res.data)
+            setMovieList([...movieList, res.data])
+            history.push("/")
 
         })
         .catch((err) => {
@@ -69,7 +69,7 @@ export const UpdateForm = ({setMovieList, movieList}) => {
             value={newMovie.metascore}
             onChange={changeHandler}
             ></input>
-            <button>Update</button>
+            <button>Save Changes</button>
         </form>
         
         </>
