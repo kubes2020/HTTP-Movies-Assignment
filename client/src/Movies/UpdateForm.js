@@ -35,7 +35,15 @@ export const UpdateForm = ({setMovieList, movieList}) => {
         axios.put(`http://localhost:5000/api/movies/${id}`, newMovie)
         .then((res) => {
             console.log("put res", res.data)
-            setMovieList([...movieList, res.data])
+            const noDuplicateMovies = movieList.map(item => {
+                if (item.id === id){
+                    return res.data
+                } else {
+                    return item
+                }
+            })
+            setMovieList(noDuplicateMovies) 
+            // setMovieList([...movieList, res.data])
             history.push("/")
 
         })
