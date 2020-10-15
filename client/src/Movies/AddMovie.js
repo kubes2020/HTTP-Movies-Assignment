@@ -17,7 +17,7 @@ export const AddMovie = ({setMovieList, movieList}) => {
    const handleChange = (e) =>{
        e.persist()
        setMovie({
-           ...movie, [e.target.name]: e.target.name === "stars" ? [e.target.value.split(',')] : e.target.value
+           ...movie, [e.target.name]: e.target.name === "stars" ? e.target.value.split(',') : e.target.value
        })
    }
 
@@ -26,7 +26,7 @@ export const AddMovie = ({setMovieList, movieList}) => {
     //    console.log("submit", movie)
         axios.post("http://localhost:5000/api/movies", movie)
         .then(res => {
-            // console.log("res from post AddMovie", res.data)
+            console.log("res from post AddMovie", res.data)
             setMovieList(res.data)
             setMovie(initialItem)
             history.push("/")
