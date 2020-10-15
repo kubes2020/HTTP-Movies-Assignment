@@ -22,7 +22,14 @@ export const AddMovie = () => {
 
    const handleSubmit = (e) => {
        e.preventDefault()
-       console.log("submit", movie)
+    //    console.log("submit", movie)
+        axios.post("http://localhost:5000/api/movies", movie)
+        .then(res => {
+            // console.log("res from post AddMovie", res)
+        })
+        .catch(err => {
+            console.log("error with post AddMovie", err)
+        })
     
    }
    
