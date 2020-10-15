@@ -1,6 +1,6 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
-
+import React, { useState } from "react";
+import {useHistory} from "react-router-dom";
 
 const initialItem = {
     id: Date.now(),
@@ -10,7 +10,8 @@ const initialItem = {
     stars: [],
 }
 
-export const AddMovie = () => {
+export const AddMovie = ({setMovieList, movieList}) => {
+    const history = useHistory()
    const [movie, setMovie] = useState(initialItem)
 
    const handleChange = (e) =>{
@@ -25,7 +26,10 @@ export const AddMovie = () => {
     //    console.log("submit", movie)
         axios.post("http://localhost:5000/api/movies", movie)
         .then(res => {
-            // console.log("res from post AddMovie", res)
+            // console.log("res from post AddMovie", res.data)
+            setMovieList(res.data)
+            setMovie(initialItem)
+            history.push("/")
         })
         .catch(err => {
             console.log("error with post AddMovie", err)
